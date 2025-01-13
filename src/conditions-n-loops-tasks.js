@@ -315,8 +315,46 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const matrix = [];
+  for (let i = 0; i < size; i += 1) matrix[i] = [];
+
+  let top = 0;
+  let bottom = size - 1;
+  let left = 0;
+  let right = size - 1;
+  let num = 0;
+
+  while (top <= bottom && left <= right) {
+    for (let i = left; i <= right; i += 1) {
+      num += 1;
+      matrix[top][i] = num;
+    }
+    top += 1;
+
+    for (let i = top; i <= bottom; i += 1) {
+      num += 1;
+      matrix[i][right] = num;
+    }
+    right -= 1;
+
+    if (top <= bottom) {
+      for (let i = right; i >= left; i -= 1) {
+        num += 1;
+        matrix[bottom][i] = num;
+      }
+      bottom -= 1;
+    }
+    if (left <= right) {
+      for (let i = bottom; i >= top; i -= 1) {
+        num += 1;
+        matrix[i][left] = num;
+      }
+      left += 1;
+    }
+  }
+
+  return matrix;
 }
 
 /**
@@ -373,6 +411,19 @@ function rotateMatrix(matrix) {
  */
 function sortByAsc(/* arr */) {
   throw new Error('Not implemented');
+
+  // if (arr.length <= 1) return arr;
+
+  // const pivot = arr[Math.floor(Math.random() * arr.length)]; // выбираем случайный опорный элемент
+  // const left = [];
+  // const right = [];
+
+  // for (let i = 0; i < arr.length; i += 1) {
+  //   if (arr[i] < pivot) left.push(arr[i]);
+  //   else if (arr[i] > pivot) right.push(arr[i]);
+  // }
+
+  // return [...sortByAsc(left), pivot, ...sortByAsc(right)];
 }
 
 /**
